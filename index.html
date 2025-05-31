@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CL ≈ NSCL</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- KaTeX CSS + JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+      onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false} ] });"></script>
+
+    <!-- Icons (SVG-based) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800">
+    <main class="flex flex-col items-center px-4 py-10 min-h-screen">
+      <!-- Hero Section -->
+      <section id="hero" class="w-full max-w-5xl text-center fade-in-up">
+        <h1 class="mb-4 text-4xl font-extrabold leading-tight md:text-5xl">
+          Self‑Supervised Contrastive Learning <br class="hidden md:block" />
+          is Approximately Supervised Contrastive Learning
+        </h1>
+        <div class="mt-2 space-y-1 text-lg font-medium text-slate-700 md:text-2xl">
+          <p>
+            <a href="https://achleshwar.github.io/" class="hover:underline" target="_blank">Achleshwar Luthra</a>
+            · <a href="https://people.tamu.edu/~tianbao-yang/" class="hover:underline" target="_blank">Tianbao Yang</a>
+            · <a href="https://tomergalanti.github.io/index.html" class="hover:underline" target="_blank">Tomer Galanti</a>
+          </p>
+          <p class="text-slate-500 font-medium">Texas A&amp;M University</p>
+        </div>
+      </section>
+
+      <!-- Links Section -->
+      <section class="mt-10 flex flex-col md:flex-row items-center justify-center gap-8">
+        <a href="https://github.com/yourname/paper-code" class="flex flex-col items-center hover:scale-105 transition-transform" target="_blank">
+          <i class="fab fa-github text-5xl text-slate-800"></i>
+          <span class="mt-2 text-md text-slate-600">Code</span>
+        </a>
+        <a href="https://arxiv.org/abs/2405.xxxxx" class="flex flex-col items-center hover:scale-105 transition-transform" target="_blank">
+          <i class="fas fa-file-pdf text-5xl text-indigo-500"></i>
+          <span class="mt-2 text-md text-slate-600">Paper</span>
+        </a>
+      </section>
+
+      <!-- Placeholder for overview, claims, etc. -->
+      <section class="mt-20 w-full max-w-3xl text-left">
+        <h2 class="text-2xl font-bold mb-4">Overview</h2>
+        <p class="text-lg leading-relaxed">
+          Despite its empirical success, the principles that make self‑supervised contrastive learning (CL)
+          work remain poorly understood... (continue content here)
+        </p>
+      </section>
+
+      <!-- Footer -->
+      <footer class="mt-20 border-t pt-6 text-center text-sm text-slate-500">
+        © 2025 Built with 🧠 and ☕. <br />
+        Contact: <a href="mailto:luthra@tamu.edu" class="underline">luthra@tamu.edu</a>
+        &middot; <a href="mailto:galanti@tamu.edu" class="underline">galanti@tamu.edu</a>
+      </footer>
+    </main>
+
+    <!-- Animate on Scroll -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll('.fade-in-up').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
