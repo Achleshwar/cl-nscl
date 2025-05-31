@@ -237,9 +237,7 @@
             </ul>
         </div>
         </div>
-
-            </div>
-
+        </div>
         </div>
 
         <!-- Claim 3 -->
@@ -261,6 +259,65 @@
         </div>
         </section>
 
+        <!-- Experiments Section -->
+      <section class="mt-20 w-full max-w-5xl text-left">
+        <h2 class="text-2xl font-bold mb-6">Experiments at a Glance</h2>
+        <!-- Experiment Card Placeholder -->
+        <div class="mb-12 space-y-12">
+          <div class="fade-in-up">
+            <h3 class="text-xl font-semibold mb-2">Tracking the losses</h3>
+            <ul class="list-disc list-inside text-slate-700 mb-4">
+              <li>DCL and NSCL losses remain tightly coupled across 2k training epochs on CIFAR-10, CIFAR‑100, and mini‑ImageNet.</li>
+              <li>The empirical gap shrinks as the number of classes grows (noticeable across datasets)</li>
+            </ul>
+            <!-- Placeholder images row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-gray-200 h-48 rounded"></div>
+              <div class="bg-gray-200 h-48 rounded"></div>
+              <div class="bg-gray-200 h-48 rounded"></div>
+            </div>
+          </div>
+
+          <div class="fade-in-up">
+            <h3 class="text-xl font-semibold mb-2">Few‑shot performance</h3>
+            <ul class="list-disc list-inside text-slate-700 mb-4">
+              <li>For NSCL, 1‑shot linear probing accuracy exceeds 70 % on mini‑ImageNet</li>
+              <li>DCL achieves competitive performance, with 100-shot linear probing accuracy exceeding 70 % on mini‑ImageNet.</li>
+            </ul>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-gray-200 h-48 rounded"></div>
+              <div class="bg-gray-200 h-48 rounded"></div>
+              <div class="bg-gray-200 h-48 rounded"></div>
+            </div>
+          </div>
+
+          <div class="fade-in-up">
+            <h3 class="text-xl font-semibold mb-2">Error bound</h3>
+            <ul class="list-disc list-inside text-slate-700 mb-4">
+              <li>The two-way m-shot NCCC and LP errors are bounded as per Proposition (1)</li>
+              <li>The error bound goes down to 0.25 for CIFAR-10 at a very large m, shown in red</li>
+            </ul>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-gray-200 h-48 rounded"></div>
+              <div class="bg-gray-200 h-48 rounded"></div>
+              <div class="bg-gray-200 h-48 rounded"></div>
+            </div>
+          </div>
+
+          <div class="fade-in-up">
+            <h3 class="text-xl font-semibold mb-2">Geometry of learned representations</h3>
+            <ul class="list-disc list-inside text-slate-700 mb-4">
+              <li>Directional CDNV drops by ~10× during CL training, while standard CDNV decreases only modestly</li>
+              <li>For NSCL, both CDNV and directional CDNV drop significantly</li>
+            </ul>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-gray-200 h-48 rounded"></div>
+              <div class="bg-gray-200 h-48 rounded"></div>
+              <div class="bg-gray-200 h-48 rounded"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Footer -->
       <footer class="mt-20 border-t pt-6 text-center text-sm text-slate-500">
