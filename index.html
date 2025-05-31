@@ -123,14 +123,144 @@
           Extensive experiments confirm the theory and reveal how CL shapes the geometry of learned features.
         </p>
       </section>
-
-      <!-- Key Claims Placeholder -->
+    
+      <!-- Key Claims -->
       <section class="mt-20 w-full max-w-4xl text-left">
-        <h2 class="text-2xl font-bold mb-4">Key Claims</h2>
-        <p class="text-lg leading-relaxed">
-          This section will summarize the key theoretical and empirical claims from the paper. We'll include LaTeX-rendered formulas using KaTeX, along with plain text and explanations. Coming up next.
-        </p>
-      </section>
+        <h2 class="text-2xl font-bold mb-6">Key Claims</h2>
+
+        <!-- Claim 1 -->
+        <div class="mb-10 p-6 border rounded-md shadow-sm bg-white">
+            <h3 class="text-xl font-semibold mb-2">1 · CL ≈ NSCL</h3>
+            <p class="mb-4">
+            The InfoNCE-style loss (<span class="text-blue-600 font-medium">Decoupled Contrastive Loss</span>)
+            used in self-supervised learning differs from the
+            <span class="text-red-600 font-medium">Negatives-only Supervised Contrastive Loss</span>
+            by at most O(1/C). In practice, for a large number of semantic classes (C), the two losses are almost indistinguishable.
+            </p>
+
+            <p class="mb-2">$$0 \leq \left| \mathcal{L}^{\text{DCL}} - \mathcal{L}^{\text{NSCL}} \right| \leq \log\left(1 + \frac{e^2 \cdot n_{\max}}{N - n_{\max}}\right)$$</p>
+            <p class="text-sm italic text-right text-slate-500 mb-4">Theorem (1)</p>
+
+            <div class="bg-slate-50 border rounded p-4 text-sm mb-4">
+            $$\small
+            \mathcal{L}^{\mathrm{DCL}}(f) = -\frac{1}{K^2N}\sum^{K}_{l_1,l_2=1}\sum_{i=1}^N
+            \log \left(
+            \frac{\exp(\mathrm{sim}(z^{l_1}_i, z^{l_2}_i))}
+                    {\sum^{K}_{l_3=1}\sum_{j\in [N]\setminus \{i\}} \exp (\mathrm{sim}(z^{l_1}_i, z^{l_3}_j))}
+            \right)$$
+            </div>
+
+            <div class="bg-slate-50 border rounded p-4 text-sm mb-4">
+            $$\small
+            \mathcal{L}^{\mathrm{NSCL}}(f) = -\frac{1}{K^2N}\sum^{K}_{l_1,l_2=1}\sum_{i=1}^N
+            \log \left(
+            \frac{\exp(\mathrm{sim}(z^{l_1}_i, z^{l_2}_i))}
+                    {\sum^{K}_{l_3=1}\sum_{j: y_j \neq y_i} \exp (\mathrm{sim}(z^{l_1}_i, z^{l_3}_j))}
+            \right)$$
+            </div>
+
+            <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+            <li><strong>$n_{\max}$</strong>: Max number of samples from any class</li>
+            <li><strong>$N$</strong>: Total number of samples in batch</li>
+            <li><strong>$K$</strong>: Total augmented versions of each sample</li>
+            <li><strong>$z^l_i = f(\alpha_l(x_i))$</strong> where <strong>$x_i$</strong> is an input image</li>
+            </ul>
+        </div>
+
+        <!-- Claim 2 -->
+        <div class="mb-10 p-6 border rounded-md shadow-sm bg-white">
+            <h3 class="text-xl font-semibold mb-2">2 · Recoverability of Labels</h3>
+            <p class="mb-4">
+            A learned representation <strong>$f$</strong> is considered <em>good</em> if it enables strong downstream performance.
+            We formalize this by analyzing the <em>few-shot classification error</em> of a linear probe and NCCC.
+            Our key insight is that this error is governed by two geometric variance terms, with the
+            <strong>directional class-distance-normalized variance (d‑CDNV)</strong> playing the dominant role.
+            </p>
+
+            <p class="mb-2">
+            As the number of labeled samples per class $m$ increases, the influence of the
+            <a href="https://arxiv.org/pdf/2112.15121" target="_blank" class="text-blue-600 underline">standard CDNV</a>
+            diminishes, leaving d‑CDNV as the main driver of performance.
+            </p>
+
+            <p class="text-center font-semibold text-blue-700 mb-4">Low d‑CDNV ⇒ strong transfer from unlabeled to labeled data.</p>
+
+            <div class="mb-4">
+            <p class="text-base mb-2">$$
+                \mathrm{err}^{\mathrm{LP}}_{m,D}(f)
+                \le
+                \mathrm{err}^{\mathrm{NCC}}_{m,D}(f)
+                \le
+                (C'-1)\left[c_1\,\text{Avg}_{i\neq j}[\tilde{V}_f(D_i,D_j)] + \tfrac{c_2}{m}\,\text{Avg}_{i\neq j}[V_{f}(D_i,D_j)] \right]
+            $$</p>
+            <p class="text-sm italic text-right text-slate-500 mb-4">Proposition (1)</p>
+
+            <div class="text-sm text-slate-600 space-y-4">
+            <!-- CDNV -->
+            <div class="bg-slate-50 border rounded p-4 my-4 overflow-x-auto">
+                <div class="flex flex-col md:flex-row items-center justify-start gap-6 w-full">
+                    <p class="font-medium whitespace-nowrap mb-2 md:mb-0">Definition of CDNV:</p>
+                    <p class="whitespace-nowrap">
+                    $$V_f(D_i, D_j) = \frac{\sigma_i^2}{\|\mu_i - \mu_j\|^2}$$
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- Directional CDNV -->
+            <div class="bg-slate-50 border rounded p-4 my-4 overflow-x-auto">
+                <div class="flex flex-col md:flex-row items-center justify-start gap-6 w-full">
+                <p class="font-medium whitespace-nowrap mb-2 md:mb-0">Definition of directional CDNV:</p>
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <p class="whitespace-nowrap">
+                    $$\tilde{V}_f(D_i, D_j) = \frac{\sigma_{ij}^2}{\|\mu_i - \mu_j\|^2} ;$$
+                    </p>
+                    <p class="whitespace-nowrap">
+                    $$\sigma_{ij}^{2} = \operatorname{Var}_{x \sim D_i} [ \langle f(x) - \mu_i, u_{ij} \rangle ] ;$$
+                    </p>
+                    <p class="whitespace-nowrap">
+                    $$u_{ij} = \frac{\mu_i - \mu_j}{\|\mu_i - \mu_j\|^2}$$
+                    </p>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="space-y-1">
+            <p>Other terms:</p>
+            <ul class="list-disc list-inside">
+            <li>$D_i$: Class-conditional distribution for class $i$</li>
+            <li>$c_1$, $c_2$: Constants derived in Appendix C</li>
+            <li>$m$: Number of labeled samples per class (i.e., number of shots)</li>
+            <li>$C'$: Total number of classes</li>
+            </ul>
+        </div>
+        </div>
+
+            </div>
+
+        </div>
+
+        <!-- Claim 3 -->
+        <div class="mb-10 p-6 border rounded-md shadow-sm bg-white">
+            <h3 class="text-xl font-semibold mb-2">3 · Collapse + Symmetry in NSCL</h3>
+            <p class="mb-4">
+            <strong>NSCL Minimizers Yield Collapse + Simplex ETF Geometry.</strong>
+            At the global minimum of the NSCL loss, representations exhibit:
+            </p>
+            <ul class="list-disc list-inside text-base text-slate-800 space-y-2 mb-2">
+            <li><strong>(i) Augmentation Collapse:</strong> All augmented views of a sample map to the same point.</li>
+            <li><strong>(ii) Within-Class Collapse:</strong> All samples from the same class share an identical embedding.</li>
+            <li><strong>(iii) Simplex ETF Geometry:</strong> Class means form a symmetric equiangular tight frame in feature space.</li>
+            </ul>
+            <p class="text-sm italic text-right text-slate-500">Theorem (2)</p>
+            <p class="mt-2">
+            Theorem (2) implies that <strong>$\mathcal{L}^{\mathrm{NSCL}}$</strong> yields perfectly clustered representations.
+            </p>
+        </div>
+        </section>
+
 
       <!-- Footer -->
       <footer class="mt-20 border-t pt-6 text-center text-sm text-slate-500">
