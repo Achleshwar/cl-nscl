@@ -59,12 +59,68 @@
         </a>
       </section>
 
-      <!-- Placeholder for overview, claims, etc. -->
-      <section class="mt-20 w-full max-w-3xl text-left">
+      <!-- Overview Section -->
+      <section class="mt-20 w-full max-w-4xl text-left">
         <h2 class="text-2xl font-bold mb-4">Overview</h2>
-        <p class="text-lg leading-relaxed">
+        <p class="text-lg mb-4">
           Despite its empirical success, the principles that make self‑supervised contrastive learning (CL)
-          work remain poorly understood... (continue content here)
+          work remain poorly understood. Several works have observed that CL-trained models exhibit
+          properties remarkably similar to supervised ones — such as well-formed clusters and
+          transferable features — even though CL lacks any access to labels.
+        </p>
+
+        <!-- Image Grid Placeholders -->
+        <div class="overflow-x-auto">
+          <div class="grid grid-cols-6 gap-2 mb-4">
+            <!-- Top row: DCL -->
+            <div class="bg-gray-200 h-24 rounded"></div>
+            <div class="bg-gray-200 h-24 rounded"></div>
+            <div class="bg-gray-200 h-24 rounded"></div>
+            <div class="bg-gray-200 h-24 rounded"></div>
+            <div class="bg-gray-200 h-24 rounded"></div>
+            <div class="bg-gray-200 h-24 rounded"></div>
+          </div>
+
+          <div class="grid grid-cols-6 gap-2 mb-2">
+            <!-- Bottom row: NSCL -->
+            <div class="bg-gray-300 h-24 rounded"></div>
+            <div class="bg-gray-300 h-24 rounded"></div>
+            <div class="bg-gray-300 h-24 rounded"></div>
+            <div class="bg-gray-300 h-24 rounded"></div>
+            <div class="bg-gray-300 h-24 rounded"></div>
+            <div class="bg-gray-300 h-24 rounded"></div>
+          </div>
+
+          <div class="grid grid-cols-6 text-center text-sm text-slate-500 mt-4">
+            <span>Init</span>
+            <span>Epoch 10</span>
+            <span>Epoch 100</span>
+            <span>Epoch 500</span>
+            <span>Epoch 1000</span>
+            <span>Epoch 2000</span>
+          </div>
+
+          <p class="text-sm text-slate-500 text-center max-w-4xl mx-auto italic mt-4">
+            <strong>DCL (top)</strong> forms semantic clusters without label supervision, while <strong>NSCL (bottom)</strong> yields tighter, more separable clusters.
+          </p>
+        </div>
+
+        <p class="mt-6 text-lg">
+          This puzzling behavior has raised a fundamental question:
+        </p>
+
+        <div class="mx-auto my-8 w-full max-w-3xl rounded-md border border-black bg-indigo-50 px-6 py-4 text-center text-lg italic text-slate-800 shadow-sm">
+          <strong>
+            How does self-supervised CL learn representations similar to supervised learning, despite lacking explicit supervision?
+          </strong>
+        </div>
+
+        <p class="text-lg">
+          Our work views self‑supervised contrastive learning (CL) through the lens of its
+          supervised counterpart. We show that the popular <strong>CL objective implicitly optimizes a
+          negatives‑only supervised contrastive loss (NSCL)</strong>. We also derive a
+          new error bound that links the geometric properties of learned representations to downstream few‑shot performance.
+          Extensive experiments confirm the theory and reveal how CL shapes the geometry of learned features.
         </p>
       </section>
 
